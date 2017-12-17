@@ -18,7 +18,9 @@ logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s',
 
 from tensorflow.python.framework import ops
 
-img1 = scp.misc.imread("./test_data/tabby_cat.png")
+fname = sys.argv[1]
+
+img1 = scp.misc.imread(fname)
 
 with tf.Session() as sess:
     images = tf.placeholder("float")
@@ -34,7 +36,7 @@ with tf.Session() as sess:
     logging.warning("Score weights are initialized random.")
     logging.warning("Do not expect meaningful results.")
 
-    logging.info("Start Initializing Variabels.")
+    logging.info("Start Initializing Variables.")
 
     init = tf.global_variables_initializer()
     sess.run(init)
