@@ -22,31 +22,21 @@ fname = sys.argv[1]
 
 img1 = scp.misc.imread(fname)
 
-with tf.Session() as sess:
-    images = tf.placeholder("float")
-    feed_dict = {images: img1}
-    batch_images = tf.expand_dims(images, 0)
+sess = tf.InteractiveSession()
+images = tf.placeholder("float")
+feed_dict = {images: img1}
+batch_images = tf.expand_dims(images, 0)
 
-    vgg_fcn = fcn16_vgg.FCN16VGG()
-    with tf.name_scope("content_vgg"):
-        vgg_fcn.build(batch_images, debug=True)
+vgg_fcn = fcn16_vgg.FCN16VGG()
+with tf.name_scope("content_vgg"):
+    vgg_fcn.build(batch_images, debug=True)
 
-    print('Finished building Network.')
+print('Finished building Network.')
 
-    logging.warning("Score weights are initialized random.")
-    logging.warning("Do not expect meaningful results.")
+init = tf.global_variables_initializer()
+sess.run(init)
 
-    logging.info("Start Initializing Variables.")
+print('Running the Network')
+down = sess.run(vgg_fcn.pred, feed_dict=feed_dict)
 
-    init = tf.global_variables_initializer()
-    sess.run(init)
-
-    print('Running the Network')
-    tensors = [vgg_fcn.pred, vgg_fcn.pred_up]
-    down, up = sess.run(tensors, feed_dict=feed_dict)
-
-    down_color = utils.color_image(down[0])
-    up_color = utils.color_image(up[0])
-
-    scp.misc.imsave('fcn16_downsampled.png', down_color)
-    scp.misc.imsave('fcn16_upsampled.png', up_color)
+segmentation_downsampled = utils.color_image(down[0])
