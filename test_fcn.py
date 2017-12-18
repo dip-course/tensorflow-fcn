@@ -25,7 +25,4 @@ init = tf.global_variables_initializer()
 sess.run(init)
 
 print('Running the Network')
-down = sess.run(vgg_fcn.pred_up, feed_dict=feed_dict)
-
-seg = utils.color_image(down) #down[0]
-scipy.misc.imsave('out.png', seg[0, :, :, 0:3])
+output = sess.run(vgg_fcn.pred_up, feed_dict=feed_dict)
