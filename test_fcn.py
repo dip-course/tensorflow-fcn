@@ -17,7 +17,7 @@ batch_images = tf.expand_dims(images, 0)
 
 vgg_fcn = fcn32_vgg.FCN32VGG()
 with tf.name_scope("content_vgg"):
-    vgg_fcn.build(batch_images, debug=True)
+    vgg_fcn.build(batch_images)
 
 print('Finished building Network.')
 

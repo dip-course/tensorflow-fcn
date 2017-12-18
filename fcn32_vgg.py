@@ -208,7 +208,7 @@ class FCN32VGG:
                 new_shape = [shape[0], shape[1], shape[2], num_classes]
             output_shape = tf.stack(new_shape)
 
-            logging.debug("Layer: %s, Fan-in: %d" % (name, in_features))
+            #logging.debug("Layer: %s, Fan-in: %d" % (name, in_features))
             f_shape = [ksize, ksize, num_classes, in_features]
 
             # create
@@ -250,8 +250,8 @@ class FCN32VGG:
         init = tf.constant_initializer(value=self.data_dict[name][0],
                                        dtype=tf.float32)
         shape = self.data_dict[name][0].shape
-        print('Layer name: %s' % name)
-        print('Layer shape: %s' % str(shape))
+        #print('Layer name: %s' % name)
+        #print('Layer shape: %s' % str(shape))
         var = tf.get_variable(name="filter", initializer=init, shape=shape)
         if not tf.get_variable_scope().reuse:
             weight_decay = tf.multiply(tf.nn.l2_loss(var), self.wd,
@@ -369,8 +369,8 @@ class FCN32VGG:
                                initializer=initializer)
 
     def get_fc_weight_reshape(self, name, shape, num_classes=None):
-        print('Layer name: %s' % name)
-        print('Layer shape: %s' % shape)
+        #print('Layer name: %s' % name)
+        #print('Layer shape: %s' % shape)
         weights = self.data_dict[name][0]
         weights = weights.reshape(shape)
         if num_classes is not None:
