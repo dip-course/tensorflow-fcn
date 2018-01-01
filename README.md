@@ -35,7 +35,7 @@ Above commands will install the linux version with gpu support. For other versio
 
 ## Usage
 
-`python test_fcn32_vgg.py` to test the implementation.
+`python test_fcn.py` to test the implementation.
 
 Use this to build the VGG object for finetuning:
 
