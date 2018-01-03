@@ -3,7 +3,7 @@ This is a one file Tensorflow implementation of [Fully Convolutional Networks](h
 
 Deconvolution Layers are initialized as bilinear upsampling. Conv and FCN layer weights using VGG weights. Numpy load is used to read VGG weights. No Caffe or Caffe-Tensorflow is required to run this. **The .npy file for [VGG16] to be downloaded before using this needwork**. You can find the file here: ftp://mi.eng.cam.ac.uk/pub/mttt2/models/vgg16.npy
 
-No Pascal VOC finetuning was applied to the weights. The model is meant to be finetuned on your own data. The model can be applied to an image directly (see `test_fcn32_vgg.py`) but the result will be rather coarse.
+No Pascal VOC finetuning was applied to the weights. The model is meant to be finetuned on your own data. The model can be applied to an image directly (see `test_fcn.py`) but the result will be rather coarse.
 
 ## Requirements
 
